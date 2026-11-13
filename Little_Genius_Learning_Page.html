@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Little Genius – Play & Learn</title>
+<style>
+:root{--ink:#26324a;--pink:#ff7ca8;--blue:#69b9f5;--yellow:#ffd65a;--green:#73d6a2;--purple:#a994f5;--paper:#fffdf7}
+*{box-sizing:border-box}body{margin:0;font-family:"Trebuchet MS",Arial,sans-serif;color:var(--ink);background:linear-gradient(135deg,#fff2d8,#e8f6ff 55%,#f5eaff);min-height:100vh}
+header{display:flex;align-items:center;justify-content:space-between;padding:14px clamp(16px,4vw,48px);background:#ffffffd9;box-shadow:0 3px 16px #34415a12;position:sticky;top:0;z-index:3}
+.brand{font-size:clamp(20px,3vw,29px);font-weight:900}.brand span{color:#f06d9c}.top-pill{background:#fff1b9;border-radius:30px;padding:9px 15px;font-weight:800}
+main{max-width:1080px;margin:0 auto;padding:28px 18px 55px}.hero{text-align:center;padding:14px 10px 22px}.hero h1{font-size:clamp(30px,5vw,48px);margin:8px 0}.hero p{font-size:18px;margin:8px;color:#5f6b80}
+.panel{background:#ffffffed;border:3px solid white;border-radius:28px;padding:clamp(18px,3vw,30px);box-shadow:0 12px 35px #35415b12}
+h2{margin:0 0 16px;font-size:25px}.section-label{font-size:15px;font-weight:900;color:#78839a;text-transform:uppercase;letter-spacing:1px;margin:18px 0 10px}
+.subjects{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:13px}
+.subject{border:0;border-radius:22px;padding:18px 10px;min-height:130px;font-size:18px;font-weight:900;color:var(--ink);cursor:pointer;transition:.18s;box-shadow:0 5px 0 #0000000d}
+.subject:hover,.answer:hover{transform:translateY(-3px)}.subject .emoji{display:block;font-size:42px;margin-bottom:7px}.math{background:#ffdf91}.letters{background:#ffbfd3}.colours{background:#c9e9ff}.animals{background:#c8f1d9}.thinking{background:#ded4ff}.nature{background:#f8d8a9}
+.controls{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:18px}.controls label{font-weight:800}.controls select{font:inherit;border:2px solid #e0e5ef;border-radius:13px;padding:10px;background:white;color:var(--ink)}
+.primary,.secondary{border:0;border-radius:16px;padding:13px 21px;font-size:17px;font-weight:900;cursor:pointer}.primary{background:#526ee8;color:white;box-shadow:0 5px 0 #354db8}.secondary{background:#edf0fa;color:#36435c}.primary:active,.secondary:active{transform:translateY(2px);box-shadow:none}
+.hidden{display:none!important}.game-head{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}.progress-wrap{height:13px;background:#edf0f6;border-radius:20px;overflow:hidden;margin:16px 0 25px}.progress{height:100%;background:linear-gradient(90deg,#72d9a7,#65baf5);width:0;transition:width .3s}
+.question{text-align:center;padding:10px 0}.question .big-emoji{font-size:clamp(65px,12vw,105px);line-height:1.2;margin:5px}.question h2{font-size:clamp(24px,4vw,34px);margin:12px 0}.listen{border:0;border-radius:30px;background:#eaf4ff;padding:10px 16px;font-size:16px;font-weight:800;cursor:pointer}
+.answers{display:grid;grid-template-columns:repeat(auto-fit,minmax(125px,1fr));gap:13px;margin:24px 0}.answer{min-height:92px;border:3px solid #edf0f6;background:white;border-radius:20px;font-size:clamp(22px,4vw,30px);font-weight:900;color:var(--ink);cursor:pointer;transition:.15s}.answer.selected{border-color:#6179ed;background:#f0f2ff}.answer.correct{border-color:#40bb7e;background:#e8fff2}.answer.wrong{border-color:#f07887;background:#fff0f1}
+.feedback{text-align:center;min-height:55px;font-size:22px;font-weight:900;padding:8px}.feedback.good{color:#20945b}.feedback.try{color:#bd6a35}.game-actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;margin:20px 0}.stat{background:#f4f7ff;border-radius:18px;padding:17px;text-align:center}.stat strong{display:block;font-size:29px}.stat span{font-size:14px;color:#6d7890;font-weight:800}
+.result{text-align:center}.result .trophy{font-size:80px}.result h2{font-size:34px}.stars{font-size:34px;letter-spacing:5px;color:#efb900}.parent-list{display:grid;gap:9px}.row{display:flex;justify-content:space-between;gap:12px;padding:12px 14px;background:#f6f8fc;border-radius:13px}.tiny{font-size:13px;color:#748096}
+footer{text-align:center;padding:20px;color:#738098;font-size:13px}
+@media(max-width:560px){header{padding:12px}.top-pill{font-size:13px}main{padding:18px 12px 35px}.subjects{grid-template-columns:repeat(2,minmax(0,1fr))}.subject{min-height:112px}.panel{border-radius:22px}}
+</style>
+</head>
+<body>
+<header><div class="brand">🌟 Little <span>Genius</span></div><div class="top-pill">Play • Learn • Shine</div></header>
+<main>
+<section id="home">
+ <div class="hero"><div style="font-size:54px">🦊 🐻 🐰</div><h1>Let's learn and play!</h1><p>Little games for curious minds aged 4–6.</p></div>
+ <div class="panel">
+  <h2>Choose what you want to learn</h2>
+  <div class="subjects">
+   <button class="subject math" data-cat="Numbers"><span class="emoji">🔢</span>Numbers</button>
+   <button class="subject letters" data-cat="Alphabet"><span class="emoji">🔤</span>Alphabet</button>
+   <button class="subject colours" data-cat="Colours & Shapes"><span class="emoji">🌈</span>Colours & Shapes</button>
+   <button class="subject animals" data-cat="Animals"><span class="emoji">🐘</span>Animals</button>
+   <button class="subject thinking" data-cat="Thinking"><span class="emoji">🧩</span>Thinking</button>
+   <button class="subject nature" data-cat="Nature & Everyday"><span class="emoji">🌻</span>Nature & Everyday</button>
+  </div>
+  <div class="controls">
+   <label for="age">Learning level</label><select id="age"><option value="4">Age 4</option><option value="5" selected>Age 5</option><option value="6">Age 6</option></select>
+   <label for="count">Questions</label><select id="count"><option>5</option><option selected>10</option><option>15</option></select>
+   <button class="primary" id="mix">🎲 Mix all subjects</button>
+  </div>
+  <p class="tiny">Tip for grown-ups: tap the 🔊 button to hear a question read aloud.</p>
+ </div>
+ <div class="controls" style="justify-content:center"><button class="secondary" id="parentBtn">👨‍👩‍👧 Grown-up progress</button></div>
+</section>
+
+<section id="game" class="panel hidden">
+ <div class="game-head"><button class="secondary" id="homeBtn">← Home</button><strong id="categoryName">Numbers</strong><strong id="counter">1 / 10</strong><span>⭐ <b id="score">0</b></span></div>
+ <div class="progress-wrap"><div class="progress" id="bar"></div></div>
+ <div class="question"><div class="big-emoji" id="picture">🍎🍎🍎</div><h2 id="questionText">How many apples can you see?</h2><button class="listen" id="listen">🔊 Read to me</button></div>
+ <div class="answers" id="answers"></div>
+ <div class="feedback" id="feedback" aria-live="polite"></div>
+ <div class="game-actions"><button class="primary hidden" id="next">Next question ➜</button></div>
+</section>
+
+<section id="result" class="panel result hidden">
+ <div class="trophy">🏆</div><h2>Wonderful learning!</h2><div class="stars" id="earnedStars">⭐⭐⭐</div>
+ <p id="resultMessage">You did a great job.</p>
+ <div class="stats"><div class="stat"><strong id="right">0</strong><span>Correct</span></div><div class="stat"><strong id="total">0</strong><span>Questions</span></div><div class="stat"><strong id="percent">0%</strong><span>Score</span></div></div>
+ <button class="primary" id="again">Play again 🎉</button> <button class="secondary" id="resultHome">Home</button>
+</section>
+
+<section id="parent" class="panel hidden">
+ <div class="game-head"><h2>Grown-up progress</h2><button class="secondary" id="parentHome">← Home</button></div>
+ <p>See how your child is getting on. Results are saved on this device only.</p>
+ <div class="stats"><div class="stat"><strong id="sessions">0</strong><span>Games played</span></div><div class="stat"><strong id="attempted">0</strong><span>Questions answered</span></div><div class="stat"><strong id="average">0%</strong><span>Average score</span></div></div>
+ <h3>Recent games</h3><div class="parent-list" id="history"></div>
+ <div class="controls"><button class="secondary" id="clearHistory">Clear saved progress</button></div>
+ <p class="tiny">This simple version does not use accounts or send children's information online.</p>
+</section>
+</main>
+<footer>Made for little learners 💛 • Grown-ups can help with reading and listening.</footer>
+<script>
+const DB = [
+{c:"Numbers",min:4,p:"🍎🍎🍎",q:"How many apples can you see?",o:["2","3","4"],a:"3",why:"Let's count: one, two, three!"},
+{c:"Numbers",min:4,p:"🐟🐟",q:"How many fish are there?",o:["1","2","3"],a:"2",why:"There are two fish."},
+{c:"Numbers",min:4,p:"⭐ ⭐ ⭐ ⭐",q:"How many stars are there?",o:["3","4","5"],a:"4",why:"Count the four stars."},
+{c:"Numbers",min:4,p:"🦋",q:"Which number is one?",o:["1","2","3"],a:"1",why:"This is number one."},
+{c:"Numbers",min:5,p:"2 + 1 = ?",q:"What is two plus one?",o:["2","3","4"],a:"3",why:"Two and one more makes three."},
+{c:"Numbers",min:5,p:"🍌🍌🍌🍌🍌",q:"How many bananas are there?",o:["4","5","6"],a:"5",why:"There are five bananas."},
+{c:"Numbers",min:5,p:"1, 2, ?",q:"What number comes next?",o:["3","4","5"],a:"3",why:"After two comes three."},
+{c:"Numbers",min:6,p:"5 - 2 = ?",q:"What is five take away two?",o:["2","3","4"],a:"3",why:"Five take away two leaves three."},
+{c:"Numbers",min:6,p:"10, 9, ?",q:"What number comes next?",o:["7","8","6"],a:"8",why:"We count backwards: ten, nine, eight."},
+{c:"Numbers",min:6,p:"🐞🐞🐞🐞🐞🐞",q:"How many ladybirds? ",o:["5","6","7"],a:"6",why:"There are six ladybirds."},
+{c:"Alphabet",min:4,p:"🍎",q:"Apple starts with which letter?",o:["A","B","C"],a:"A",why:"A is for apple."},
+{c:"Alphabet",min:4,p:"🐻",q:"Bear starts with which letter?",o:["D","B","M"],a:"B",why:"B is for bear."},
+{c:"Alphabet",min:4,p:"🐱",q:"Cat starts with which letter?",o:["C","S","T"],a:"C",why:"C is for cat."},
+{c:"Alphabet",min:5,p:"🐶",q:"Which letter does dog start with?",o:["B","D","G"],a:"D",why:"D is for dog."},
+{c:"Alphabet",min:5,p:"🐘",q:"Elephant starts with which letter?",o:["E","F","L"],a:"E",why:"E is for elephant."},
+{c:"Alphabet",min:5,p:"🌞",q:"Which letter makes the first sound in sun?",o:["M","S","R"],a:"S",why:"S is for sun."},
+{c:"Alphabet",min:6,p:"🐸",q:"Which letter does frog start with?",o:["F","P","V"],a:"F",why:"F is for frog."},
+{c:"Alphabet",min:6,p:"🦁",q:"Which letter does lion start with?",o:["L","I","N"],a:"L",why:"L is for lion."},
+{c:"Alphabet",min:6,p:"A a",q:"Which small letter matches A?",o:["a","b","d"],a:"a",why:"The small letter for A is a."},
+{c:"Alphabet",min:6,p:"B b",q:"Which capital letter matches b?",o:["D","B","P"],a:"B",why:"The capital letter for b is B."},
+{c:"Colours & Shapes",min:4,p:"🔴",q:"What colour is this?",o:["Blue","Red","Yellow"],a:"Red",why:"This is a red circle."},
+{c:"Colours & Shapes",min:4,p:"🟦",q:"What colour is this shape?",o:["Green","Blue","Pink"],a:"Blue",why:"This shape is blue."},
+{c:"Colours & Shapes",min:4,p:"🔺",q:"What shape is this?",o:["Circle","Square","Triangle"],a:"Triangle",why:"A triangle has three sides."},
+{c:"Colours & Shapes",min:4,p:"⚪",q:"Which shape is round?",o:["Circle","Square","Triangle"],a:"Circle",why:"A circle is round."},
+{c:"Colours & Shapes",min:5,p:"🟨",q:"What colour is a ripe banana usually?",o:["Yellow","Purple","Blue"],a:"Yellow",why:"A ripe banana is usually yellow."},
+{c:"Colours & Shapes",min:5,p:"🟩",q:"Which colour is this?",o:["Orange","Green","Red"],a:"Green",why:"This is green."},
+{c:"Colours & Shapes",min:5,p:"🟥",q:"How many sides does a square have?",o:["3","4","5"],a:"4",why:"A square has four equal sides."},
+{c:"Colours & Shapes",min:6,p:"🔷",q:"How many corners does this diamond shape have?",o:["3","4","5"],a:"4",why:"It has four corners."},
+{c:"Colours & Shapes",min:6,p:"🔴🔵🔴🔵 ?",q:"What comes next in the pattern?",o:["🔴","🔵","🟡"],a:"🔴",why:"The colours take turns: red, blue, red, blue, red."},
+{c:"Colours & Shapes",min:6,p:"🟡 + 🔵",q:"What colour do yellow and blue make when mixed?",o:["Green","Pink","Orange"],a:"Green",why:"Yellow and blue make green."},
+{c:"Animals",min:4,p:"🐄",q:"Which animal says moo?",o:["Cow","Cat","Duck"],a:"Cow",why:"A cow says moo."},
+{c:"Animals",min:4,p:"🐶",q:"Which animal says woof?",o:["Sheep","Dog","Horse"],a:"Dog",why:"A dog can bark: woof woof!"},
+{c:"Animals",min:4,p:"🐘",q:"Which animal has a long trunk?",o:["Elephant","Lion","Frog"],a:"Elephant",why:"An elephant has a long trunk."},
+{c:"Animals",min:4,p:"🐟",q:"Where does a fish live?",o:["In water","In a tree","In a nest"],a:"In water",why:"Fish live in water."},
+{c:"Animals",min:5,p:"🦘",q:"Which animal is famous for hopping in Australia?",o:["Kangaroo","Tiger","Whale"],a:"Kangaroo",why:"Kangaroos hop using their strong back legs."},
+{c:"Animals",min:5,p:"🐑",q:"What sound does a sheep make?",o:["Moo","Baa","Roar"],a:"Baa",why:"A sheep says baa."},
+{c:"Animals",min:5,p:"🦋",q:"What does a caterpillar turn into?",o:["Butterfly","Fish","Frog"],a:"Butterfly",why:"A caterpillar changes into a butterfly."},
+{c:"Animals",min:6,p:"🐧",q:"Which bird cannot fly but can swim?",o:["Eagle","Penguin","Parrot"],a:"Penguin",why:"Penguins are excellent swimmers."},
+{c:"Animals",min:6,p:"🐸",q:"Where can a frog live?",o:["On land and in water","Only in the sky","Only in a desert"],a:"On land and in water",why:"Frogs are amphibians and can live on land and in water."},
+{c:"Animals",min:6,p:"🐝",q:"What do bees help flowers do?",o:["Grow seeds","Turn blue","Walk"],a:"Grow seeds",why:"Bees help pollinate flowers so plants can make seeds."},
+{c:"Thinking",min:4,p:"🍎 🍎 🍌",q:"Which one is different?",o:["🍎","🍌","🍎"],a:"🍌",why:"The banana is different because the others are apples."},
+{c:"Thinking",min:4,p:"🔴 🔴 🔵",q:"Which colour is different?",o:["Red","Red","Blue"],a:"Blue",why:"Blue is different from the two red circles."},
+{c:"Thinking",min:5,p:"🐶 🐱 🥕",q:"Which one is not an animal?",o:["Dog","Cat","Carrot"],a:"Carrot",why:"A carrot is a vegetable."},
+{c:"Thinking",min:5,p:"☀️ 🌙 ☀️ ?",q:"What should come next?",o:["🌙","🐟","🌳"],a:"🌙",why:"The pattern goes sun, moon, sun, moon."},
+{c:"Thinking",min:5,p:"🧤",q:"What do we usually wear on our hands when it is cold?",o:["Gloves","Socks","Hat"],a:"Gloves",why:"Gloves keep our hands warm."},
+{c:"Thinking",min:6,p:"👟",q:"What do you put on before going for a walk?",o:["Shoes","Pillow","Plate"],a:"Shoes",why:"Shoes protect our feet when we walk."},
+{c:"Thinking",min:6,p:"🌱 🌿 🌳",q:"What comes first when a plant grows?",o:["Seed","Big tree","Fruit"],a:"Seed",why:"A plant usually starts as a seed."},
+{c:"Thinking",min:6,p:"2, 4, 6, ?",q:"What number comes next?",o:["7","8","9"],a:"8",why:"We add two each time: two, four, six, eight."},
+{c:"Nature & Everyday",min:4,p:"🍓",q:"Is a strawberry a fruit or a vegetable?",o:["Fruit","Vegetable","Toy"],a:"Fruit",why:"A strawberry is a fruit."},
+{c:"Nature & Everyday",min:4,p:"👀",q:"Which body part helps you see?",o:["Eyes","Ears","Nose"],a:"Eyes",why:"We use our eyes to see."},
+{c:"Nature & Everyday",min:4,p:"👂",q:"Which body part helps you hear?",o:["Hands","Ears","Feet"],a:"Ears",why:"We use our ears to hear sounds."},
+{c:"Nature & Everyday",min:5,p:"🌧️",q:"What do you use to stay dry in the rain?",o:["Umbrella","Sunglasses","Fan"],a:"Umbrella",why:"An umbrella helps keep rain off you."},
+{c:"Nature & Everyday",min:5,p:"🚌",q:"Which one takes many people to school or work?",o:["Bus","Bicycle","Skateboard"],a:"Bus",why:"A bus can carry many passengers."},
+{c:"Nature & Everyday",min:5,p:"🌱",q:"What do plants need to grow?",o:["Water and sunlight","Shoes","Chocolate"],a:"Water and sunlight",why:"Plants need water and light to grow."},
+{c:"Nature & Everyday",min:6,p:"🦷",q:"What should you use to clean your teeth?",o:["Toothbrush","Paintbrush","Hairbrush"],a:"Toothbrush",why:"A toothbrush helps keep teeth clean."},
+{c:"Nature & Everyday",min:6,p:"🌙",q:"When do we usually see the moon?",o:["At night","Only at lunchtime","Under the sea"],a:"At night",why:"We often see the moon in the night sky."},
+{c:"Nature & Everyday",min:6,p:"🚦",q:"What does a red traffic light mean?",o:["Stop","Go faster","Dance"],a:"Stop",why:"Red means stop and wait."},
+{c:"Nature & Everyday",min:6,p:"🧼",q:"When should we wash our hands?",o:["Before eating","Never","Only on birthdays"],a:"Before eating",why:"Washing hands before eating helps keep us healthy."}
+];
+const $=id=>document.getElementById(id);
+let deck=[],index=0,score=0,selectedCategory="All",lastCount=10,locked=false;
+function show(id){["home","game","result","parent"].forEach(x=>$(x).classList.toggle("hidden",x!==id));}
+function shuffle(a){let b=[...a];for(let i=b.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];}return b;}
+function start(cat){selectedCategory=cat;lastCount=Number($("count").value);let age=Number($("age").value);let pool=DB.filter(q=>q.min<=age&&(cat==="All"||q.c===cat));deck=shuffle(pool).slice(0,Math.min(lastCount,pool.length));index=0;score=0;show("game");render();}
+function render(){locked=false;let q=deck[index];$("categoryName").textContent=q.c;$("counter").textContent=`${index+1} / ${deck.length}`;$("score").textContent=score;$("bar").style.width=`${index/deck.length*100}%`;$("picture").textContent=q.p;$("questionText").textContent=q.q;$("feedback").textContent="";$("feedback").className="feedback";$("next").classList.add("hidden");$("answers").innerHTML="";
+shuffle(q.o).forEach((opt,i)=>{let b=document.createElement("button");b.className="answer";b.textContent=opt;b.onclick=()=>choose(opt,b);$("answers").appendChild(b);});}
+function speak(text){if(!("speechSynthesis" in window))return; speechSynthesis.cancel();let u=new SpeechSynthesisUtterance(text);u.rate=.82;u.pitch=1.15;speechSynthesis.speak(u);}
+function choose(opt,btn){if(locked)return;let q=deck[index];locked=true;document.querySelectorAll(".answer").forEach(b=>b.disabled=true);if(opt===q.a){score++;btn.classList.add("correct");$("feedback").textContent="🌟 Wonderful! That's right!";$("feedback").classList.add("good");speak("Wonderful! That's right. "+q.why);}else{btn.classList.add("wrong");document.querySelectorAll(".answer").forEach(b=>{if(b.textContent===q.a)b.classList.add("correct");});$("feedback").textContent="💛 Good try! "+q.why;$("feedback").classList.add("try");speak("Good try! The answer is "+q.a+". "+q.why);} $("score").textContent=score;$("next").textContent=index===deck.length-1?"See my stars! ⭐":"Next question ➜";$("next").classList.remove("hidden");}
+function finish(){let pct=Math.round(score/deck.length*100);$("right").textContent=score;$("total").textContent=deck.length;$("percent").textContent=pct+"%";$("earnedStars").textContent="⭐".repeat(Math.max(1,Math.round(score/deck.length*5)));$("resultMessage").textContent=pct===100?"Amazing! You got every question right!":pct>=70?"Fantastic work! You are learning so much.":"You did a lovely job practising. Let's play again soon!";let hist=JSON.parse(localStorage.getItem("lg-history")||"[]");hist.unshift({date:new Date().toLocaleString(),category:selectedCategory,age:$("age").value,score,total:deck.length,pct});localStorage.setItem("lg-history",JSON.stringify(hist.slice(0,50)));show("result");speak("You got "+score+" out of "+deck.length+". Well done!");}
+$("next").onclick=()=>{index++;if(index<deck.length)render();else finish();};$("listen").onclick=()=>speak(deck[index].q);$("mix").onclick=()=>start("All");
+document.querySelectorAll(".subject").forEach(b=>b.onclick=()=>start(b.dataset.cat));
+$("homeBtn").onclick=$("resultHome").onclick=$("parentHome").onclick=()=>{speechSynthesis?.cancel?.();show("home");};
+$("again").onclick=()=>start(selectedCategory);
+$("parentBtn").onclick=()=>{let h=JSON.parse(localStorage.getItem("lg-history")||"[]");$("sessions").textContent=h.length;$("attempted").textContent=h.reduce((s,x)=>s+x.total,0);$("average").textContent=h.length?Math.round(h.reduce((s,x)=>s+x.pct,0)/h.length)+"%":"0%";$("history").innerHTML=h.length?h.slice(0,12).map(x=>`<div class="row"><span><b>${x.category}</b><br><span class="tiny">${x.date} • Age ${x.age}</span></span><b>${x.score}/${x.total} (${x.pct}%)</b></div>`).join(""):"<p>No games played yet. Start a game to see progress here.</p>";show("parent");};
+$("clearHistory").onclick=()=>{if(confirm("Clear all saved learning progress on this device?")){localStorage.removeItem("lg-history");$("parentBtn").click();}};
+$("parentBtn").setAttribute("aria-label","Open grown-up progress");
+</script>
+</body></html>
